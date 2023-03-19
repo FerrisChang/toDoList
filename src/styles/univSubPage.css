@@ -1,0 +1,14 @@
+#parentContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+#universalId {
+    font-size: 30px;
+    margin: 0px;
+    font-weight: bold;
+    padding: 30px;
+}
