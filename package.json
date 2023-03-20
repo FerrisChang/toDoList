@@ -41,6 +41,7 @@
     "commander": "^2.20.3",
     "cross-spawn": "^7.0.3",
     "cssesc": "^3.0.0",
+    "date-fns": "^2.29.3",
     "electron-to-chromium": "^1.4.306",
     "emojis-list": "^3.0.0",
     "enhanced-resolve": "^5.12.0",

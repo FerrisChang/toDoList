@@ -1,19 +1,9 @@
-import addItem from "./addItem";
+import addItem from "./addToDoItem";
 import addList from "./addList";
 import cancelFunction from "./cancelBtn";
 
 
-export class TodoList {
-    constructor() {
-    this.projects = [];
-    }
-    set setProjects(projects) {
-        this.projects = projects;
-    }
-    get getProjects() {
-        return this.projects;
-    }
-}
+
 
 export default function addListBtn(location) {
     if(location === 'sideBar') {
