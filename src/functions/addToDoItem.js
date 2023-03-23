@@ -1,5 +1,26 @@
+import { ListBlueprint } from "./addList";
 import cancelFunction from "./cancelBtn";
 
+class ToDoItems {
+    constructor(name, description, dueDate, priority){
+        this.name = name; 
+        this.description = description;
+        this.dueDate = dueDate;
+        this.priority = priority;
+    }
+    get getName(){
+        return this.name;
+    }
+    get getDescription(){
+        return this.description;
+    }
+    get getDueDate(){
+        return this.dueDate;
+    }
+    get getPriority(){
+        return this.priority;
+    }
+}
 
 export default function addItem(){
     const item = new ToDoItems();
@@ -20,7 +41,8 @@ export default function addItem(){
     itemLocation.appendChild(itemDiv);
     itemDiv.appendChild(itemName);
     itemDiv.appendChild(itemDesc);
-
+    ListBlueprint.holdTheItems(item);
+    console.table(ListBlueprint);
 
     cancelFunction('child');
 

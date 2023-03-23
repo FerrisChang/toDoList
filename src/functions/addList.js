@@ -2,7 +2,29 @@ import cancelFunction from "./cancelBtn";
 import subPage from "../pages/univSubPage";
 import clear from "./clearSubPg";
 
+export class ListBlueprint{
+    constructor(name, id){
+        this.name = name;
+        this.id = id;
+        this.tasks = [];
+    }
+    set setName(name){
+        this.name = name;
+    }
+    get getName(){
+        return this.name;
+    }
+    set setTasks(tasks) {
+        this.tasks = tasks
+    }
+    get getTasks(){
+        return this.tasks;
+    }
+    static holdTheItems(listItem){
+        this.tasks.push(listItem);
+    }
 
+}
 
 export default function addList(){
     const theLists = new ListBlueprint();
@@ -15,6 +37,7 @@ export default function addList(){
     listPara.textContent = theLists.getName;
     listPara.id = theLists.getName;
     
+
     projectNames.appendChild(listBtn);
     listBtn.appendChild(listPara);
     console.table(theLists)

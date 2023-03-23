@@ -12,7 +12,6 @@ export default class Project{
     appendToDo(toDo){
         this.toDos.push(toDo);
     }
-
     getAllToDosInInterval(interval){
         return this.toDos.filter(
             (toDo) =>!toDo.date || isWithinInterval(toDo.date, interval)
