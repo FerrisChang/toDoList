@@ -1,33 +1,29 @@
-import homePage from "./pages/homePage";
-import clear from "./functions/clearSubPg";
-import addListBtn from "./functions/addProject";
-import subPage from "./pages/univSubPage";  
+import { save, view } from "./functions/storage";
 
-
-
-homePage();
-
-
-
-const todayBtn = document.getElementById('today');
-todayBtn.addEventListener('click', () => {
-    clear();
-    subPage('Today', false);
+const CLICK_ADD_PROJECT = document.getElementById('addProjects');
+CLICK_ADD_PROJECT.addEventListener('click', () => {
+    const addingProject = document.getElementById('projectNames');
+    addingProject.innerHTML = 
+    `<form id="projectModel">
+        <label for="Lname">List Name:</label><br>
+        <input type="text" id="Lname" name="Lname"><br>
+        <button id="yesList">Save</button>
+        <button id="noList">Cancel</button>
+    </form>`
+    const adding = document.getElementById('yesList');
+    adding.addEventListener('click', () => { save() });
+    const canceling = document.getElementById('noList');
+    canceling.addEventListener('click', () => { return "" })
 });
 
-const weekBtn = document.getElementById('thisWeek');
-weekBtn.addEventListener('click', () => {
-    clear();
-    subPage('This Week', false);
-});
+view();
 
-const monthBtn = document.getElementById('thisMonth');
-monthBtn.addEventListener('click', () => {
-    clear();
-    subPage('This Month', false);
-});
 
-const addBtn = document.getElementById('addProjects');
-addBtn.addEventListener('click', () => {
-    addListBtn('sideBar');
-});
+
+
+
+
+
+
+
+
