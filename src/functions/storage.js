@@ -16,13 +16,16 @@ export function save() {
 //will convert the localstorage array parsing it to display on the page.
 export function view() {
     if(localStorage.getItem != null){
+
         const storedLists = JSON.parse(localStorage.getItem('LISTS'));
         storedLists.forEach(item => {
+
             const LIST_CONTAINER = document.getElementById('projectList');
             const ListButton = document.createElement('button');
             ListButton.innerText = item;
             ListButton.id = 'lists'
             LIST_CONTAINER.appendChild(ListButton);
+
             ListButton.addEventListener('click', () => {
                 appendToDoButton(item);
                 objectView();
@@ -34,17 +37,21 @@ export function view() {
 function appendToDoButton(Lname) {
     const todoItems = document.getElementById('toDoContainer');
     todoItems.innerText = "";
+
     const title = document.createElement('div');
     title.innerText = Lname;
     title.id = 'title';
     todoItems.appendChild(title);
+
     const toDoModel = document.createElement('div');
     toDoModel.id = 'toDoButtonContainer';
     todoItems.appendChild(toDoModel);
+
     const ADD_TODO_BUTTON = document.createElement('button');
     ADD_TODO_BUTTON.innerText = 'Add Item';
     ADD_TODO_BUTTON.id ='toDoAddButton';
     toDoModel.appendChild(ADD_TODO_BUTTON);
+    
     ADD_TODO_BUTTON.addEventListener('click', () => {
         toDoModel.innerHTML =
         `<form id="itemAdder">
@@ -57,6 +64,7 @@ function appendToDoButton(Lname) {
             <button id="submit">Save</button><br>
             <button id="cancel">Cancel</button><br>
         </form>`
+
         const submit = document.getElementById('submit');
         submit.addEventListener('click', () => { 
             objectSave();
@@ -70,6 +78,7 @@ function appendToDoButton(Lname) {
             toDoModel.appendChild(ADD_TODO_BUTTON);
         })
     })
+
     const TODO_CONTAINER = document.createElement('div');
     TODO_CONTAINER.id = 'toDos';
     todoItems.appendChild(TODO_CONTAINER);
@@ -100,15 +109,22 @@ function objectSave() {
 //will display the list item card
 export function objectView(){
     const LIST_TITLE = document.getElementById('title').innerText;
+
     if(localStorage.getItem(LIST_TITLE) != null){
         const storedItems = JSON.parse(localStorage.getItem(LIST_TITLE));
         const ITEM_CONTAINER = document.getElementById('toDos');
         ITEM_CONTAINER.innerText = "";
+
         storedItems.forEach(item => {
                 const toDoCard = document.createElement('div');
                 toDoCard.id = 'itemCard';
-                toDoCard.innerHTML = 'Name: ' + item.theName + ' Description: ' + item.theDescription + ' Due Date: ' + item.theDueDate;
+                toDoCard.innerHTML = `
+                <div id="cardName">Name: ${item.theName}</div><br>
+                <div id="cardDesc">Description: ${item.theDescription}</div><br>
+                <div id="cardDate">Due Date: ${item.theDueDate}</div><br>
+                `
                 ITEM_CONTAINER.appendChild(toDoCard);
         });
     }
 }
+

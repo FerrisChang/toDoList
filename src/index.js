@@ -1,4 +1,4 @@
-import { save, view, objectView} from "./functions/storage";
+import { save, view, } from "./functions/storage";
 
 const CLICK_ADD_PROJECT = document.getElementById('addProjects');
 CLICK_ADD_PROJECT.addEventListener('click', () => {
