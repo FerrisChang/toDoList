@@ -3,37 +3,41 @@ import { forEach } from "lodash";
 //saves the project list to localstorage only.
 export function save() {
     let new_data = document.getElementById('Lname').value;
-    if(localStorage.getItem('data') == null) {
-        localStorage.setItem('data', '[]')
+    if(localStorage.getItem('LISTS') == null) {
+        localStorage.setItem('LISTS', '[]')
     }
 
-    let old_data = JSON.parse(localStorage.getItem('data'));
+    let old_data = JSON.parse(localStorage.getItem('LISTS'));
     old_data.push(new_data);
 
-    localStorage.setItem('data', JSON.stringify(old_data))
+    localStorage.setItem('LISTS', JSON.stringify(old_data))
 } 
 
 //will convert the localstorage array parsing it to display on the page.
 export function view() {
     if(localStorage.getItem != null){
-        const storedLists = JSON.parse(localStorage.getItem('data'));
+        const storedLists = JSON.parse(localStorage.getItem('LISTS'));
         storedLists.forEach(item => {
-            console.log(item)
             const LIST_CONTAINER = document.getElementById('projectList');
             const ListButton = document.createElement('button');
             ListButton.innerText = item;
             ListButton.id = 'lists'
             LIST_CONTAINER.appendChild(ListButton);
             ListButton.addEventListener('click', () => {
-                appendToDoButton();
+                appendToDoButton(item);
+                objectView();
             })
         })
     }
 }
 
-function appendToDoButton() {
+function appendToDoButton(Lname) {
     const todoItems = document.getElementById('toDoContainer');
     todoItems.innerText = "";
+    const title = document.createElement('div');
+    title.innerText = Lname;
+    title.id = 'title';
+    todoItems.appendChild(title);
     const toDoModel = document.createElement('div');
     toDoModel.id = 'toDoButtonContainer';
     todoItems.appendChild(toDoModel);
@@ -55,20 +59,16 @@ function appendToDoButton() {
         </form>`
         const submit = document.getElementById('submit');
         submit.addEventListener('click', () => { 
-            const itemName = document.getElementById('Iname').value;
-            const itemDescription = document.getElementById('Idescription').value;
-            const itemDate = document.getElementById('Idate').value;
-            objectSave(itemName, itemDescription, itemDate);
+            objectSave();
+            objectView();
+            toDoModel.innerText = "";
+            toDoModel.appendChild(ADD_TODO_BUTTON);
         })
         const cancel = document.getElementById('cancel')
         cancel.addEventListener('click', ()=>{
             toDoModel.innerText = "";
             toDoModel.appendChild(ADD_TODO_BUTTON);
         })
-
-        var form = document.getElementById("itemAdder");
-        function handleForm(event) { event.preventDefault(); } 
-        form.addEventListener('submit', handleForm);
     })
     const TODO_CONTAINER = document.createElement('div');
     TODO_CONTAINER.id = 'toDos';
@@ -78,17 +78,37 @@ function appendToDoButton() {
 
 
 //Currently trying to get the name for the list to put it in
-function objectSave(Name, Description, DueDate) {
-    const itemObject = {theName: Name, theDescription: Description, theDueDate: DueDate};
+function objectSave() {
+    const itemName = document.getElementById('Iname').value;
+    const itemDescription = document.getElementById('Idescription').value;
+    const itemDate = document.getElementById('Idate').value;
+    const listUsed = document.getElementById('title').innerText;
 
-    // const LIST_NAME = document.getElementByI
+    const itemObject = {theName: itemName, theDescription: itemDescription, theDueDate: itemDate};
 
-    if(localStorage.getItem('list') == null) {
-        localStorage.setItem('list', '[]')
+    if(localStorage.getItem(listUsed) == null) {
+        localStorage.setItem(listUsed, '[]')
     }
 
-    let old_list = JSON.parse(localStorage.getItem('list'));
+    let old_list = JSON.parse(localStorage.getItem(listUsed));
     old_list.push(itemObject);
 
-    localStorage.setItem('list', JSON.stringify(old_list));
+    localStorage.setItem(listUsed, JSON.stringify(old_list));
+}
+
+
+//will display the list item card
+export function objectView(){
+    const LIST_TITLE = document.getElementById('title').innerText;
+    if(localStorage.getItem(LIST_TITLE) != null){
+        const storedItems = JSON.parse(localStorage.getItem(LIST_TITLE));
+        const ITEM_CONTAINER = document.getElementById('toDos');
+        ITEM_CONTAINER.innerText = "";
+        storedItems.forEach(item => {
+                const toDoCard = document.createElement('div');
+                toDoCard.id = 'itemCard';
+                toDoCard.innerHTML = 'Name: ' + item.theName + ' Description: ' + item.theDescription + ' Due Date: ' + item.theDueDate;
+                ITEM_CONTAINER.appendChild(toDoCard);
+        });
+    }
 }
