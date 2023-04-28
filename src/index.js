@@ -1,4 +1,5 @@
-import { save, view, } from "./functions/storage";
+import { save, view} from "./functions/storage";
+import { todayDefaultButton } from "./functions/dateButtons";
 
 const CLICK_ADD_PROJECT = document.getElementById('addProjects');
 CLICK_ADD_PROJECT.addEventListener('click', () => {
@@ -15,6 +16,9 @@ CLICK_ADD_PROJECT.addEventListener('click', () => {
     const canceling = document.getElementById('noList');
     canceling.addEventListener('click', () => { return "" })
 });
+
+const todayButton = document.getElementById('today');
+todayButton.addEventListener('click', ()=>{ todayDefaultButton(); });
 
 view();
 
