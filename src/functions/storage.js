@@ -1,4 +1,4 @@
-import { forEach } from "lodash";
+import { forEach, indexOf } from "lodash";
 import { appendToDoButton } from "./addingButtons";
 
 //saves the project list to local storage only.
@@ -36,7 +36,7 @@ export function view() {
 }
 
 //Currently trying to get the name for the list to put it in
-function objectSave() {
+export function objectSave() {
     const itemName = document.getElementById('Iname').value;
     const itemDescription = document.getElementById('Idescription').value;
     const itemDate = document.getElementById('Idate').value;
@@ -61,18 +61,33 @@ export function objectView(){
 
     if(localStorage.getItem(LIST_TITLE) != null){
         const storedItems = JSON.parse(localStorage.getItem(LIST_TITLE));
+        console.log(storedItems)
         const ITEM_CONTAINER = document.getElementById('toDos');
         ITEM_CONTAINER.innerText = "";
 
         storedItems.forEach(item => {
-                const toDoCard = document.createElement('div');
-                toDoCard.id = 'itemCard';
-                toDoCard.innerHTML = `
-                <div id="cardName">Name: ${item.theName}</div><br>
-                <div id="cardDesc">Description: ${item.theDescription}</div><br>
-                <div id="cardDate">Due Date: ${item.theDueDate}</div><br>
-                `
-                ITEM_CONTAINER.appendChild(toDoCard);
+            const toDoCard = document.createElement('div');
+            toDoCard.id = 'itemCard';
+            toDoCard.innerHTML = `
+            <div id="${item.theName}">Name: ${item.theName}</div><br>
+            <div id="cardDesc">Description: ${item.theDescription}</div><br>
+            <div id="cardDate">Due Date: ${item.theDueDate}</div><br>
+            `;
+            ITEM_CONTAINER.appendChild(toDoCard);
+            const deleteButton = document.createElement('button');
+            deleteButton.setAttribute('id', 'delete-btn');
+            deleteButton.innerText = "Delete";
+            deleteButton.addEventListener('click', (event) => {
+
+// will give function to delete button to remove from DOM and local storage.
+                if(event.target.id === 'delete-btn'){
+                    ITEM_CONTAINER.removeChild(toDoCard)
+                    const indexNumber = storedItems.indexOf(item);
+                    storedItems.splice(indexNumber, 1);
+                    localStorage.setItem(LIST_TITLE, JSON.stringify(storedItems));
+                }
+            });
+            toDoCard.appendChild(deleteButton);
         });
     }
 }
