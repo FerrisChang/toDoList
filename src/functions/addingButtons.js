@@ -8,21 +8,17 @@ import { objectSave, objectView } from '../functions/storage'
 export function appendToDoButton(Lname) {
     const todoItems = document.getElementById('toDoContainer');
     todoItems.innerText = "";
-
     const title = document.createElement('div');
     title.innerText = Lname;
     title.id = 'title';
     todoItems.appendChild(title);
-
     const toDoModel = document.createElement('div');
     toDoModel.id = 'toDoButtonContainer';
     todoItems.appendChild(toDoModel);
-
     const ADD_TODO_BUTTON = document.createElement('button');
     ADD_TODO_BUTTON.innerText = 'Add Item';
     ADD_TODO_BUTTON.id ='toDoAddButton';
     toDoModel.appendChild(ADD_TODO_BUTTON);
-    
     ADD_TODO_BUTTON.addEventListener('click', () => {
         toDoModel.innerHTML =
         `<form id="itemAdder">
@@ -35,7 +31,6 @@ export function appendToDoButton(Lname) {
             <button id="submit">Save</button><br>
             <button id="cancel">Cancel</button><br>
         </form>`
-
         const submit = document.getElementById('submit');
         submit.addEventListener('click', () => { 
             objectSave();
@@ -49,8 +44,51 @@ export function appendToDoButton(Lname) {
             toDoModel.appendChild(ADD_TODO_BUTTON);
         })
     })
-    
     const TODO_CONTAINER = document.createElement('div');
     TODO_CONTAINER.id = 'toDos';
     todoItems.appendChild(TODO_CONTAINER);
+}
+
+
+
+//make the today default button functions
+//will take the current date in the format of yyyy-MM-dd and compare the dates only showing todays todos.
+export function todayDefaultButton(){
+    let currentDate = new Date().toJSON().slice(0, 10);
+    const ITEM_CONTAINER = document.getElementById('toDos');
+    ITEM_CONTAINER.innerText = "";
+    for(let i = 0, len = localStorage.length; i < len; ++i){
+        const allItems = JSON.parse(localStorage.getItem(localStorage.key(i)));
+        allItems.forEach(card => {
+            if(card.theDueDate == currentDate){
+                const toDoCard = document.createElement('div');
+                toDoCard.id = 'itemCard';
+                toDoCard.innerHTML = `
+                <div id="cardName">Name: ${card.theName}</div><br>
+                <div id="cardDesc">Description: ${card.theDescription}</div><br>
+                <div id="cardDate">Due Date: ${card.theDueDate}</div><br>
+                `
+                ITEM_CONTAINER.appendChild(toDoCard);
+            }
+        })
+    }
+}
+
+
+// will give function to delete button to remove from DOM and local storage.
+export function deleteButton(objectSent, parsedLocalStorage, titleOfList){
+    const ITEM_CONTAINER = document.getElementById('toDos');
+    const toDoCard = document.getElementById('itemCard');
+    const deleteButton = document.createElement('button');
+    deleteButton.setAttribute('id', 'delete-btn');
+    deleteButton.innerText = "Delete";
+    deleteButton.addEventListener('click', (event) => {
+        if(event.target.id === 'delete-btn'){
+            ITEM_CONTAINER.removeChild(toDoCard)
+            const indexNumber = parsedLocalStorage.indexOf(objectSent);
+            parsedLocalStorage.splice(indexNumber, 1);
+            localStorage.setItem(titleOfList, JSON.stringify(parsedLocalStorage));
+        }
+    });
+    toDoCard.appendChild(deleteButton);
 }

@@ -1,5 +1,5 @@
 import { save, view} from "./functions/storage";
-import { todayDefaultButton } from "./functions/dateButtons";
+import { todayDefaultButton } from "./functions/addingButtons";
 
 const CLICK_ADD_PROJECT = document.getElementById('addProjects');
 CLICK_ADD_PROJECT.addEventListener('click', () => {
