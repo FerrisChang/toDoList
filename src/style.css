@@ -1,0 +1,412 @@
+body {
+    margin: 0px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+}
+
+#content {
+    background: black;
+    color:white;
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+}
+
+#header {
+    display: flex;
+    align-items: center;
+    background: black;
+    color: white;
+    width: 100vw;
+    height: 10vh;
+    justify-content: space-between;
+}
+
+#innerbody {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: 80vh;
+    background: black;
+    color: white;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#footer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    background: black;
+    color: white;
+    width: 100vw;
+    height: 10vh;
+}
+
+.logo {
+    margin: 20px;
+    padding: 15px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#social {
+    margin: 20px;
+    padding: 15px;
+}
+
+img {
+    padding: 9px;
+}
+
+#today {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    height: 40px;
+    width: 150px;
+    background: gray;
+    border-style: none;
+    border-radius: 9px;
+    color: white;
+}
+
+
+#toDoLists {
+    background: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 20vw;
+    height: 80vh;
+    flex-wrap: nowrap;
+}
+
+#projectContainer {
+    margin: 30px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    color: white;
+    border-top: solid;
+    border-width: thin;
+    border-top-color: rgb(46, 45, 45);
+}
+
+#toDoContainer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background: black;
+    color: white;
+    height: 100%;
+    width: 80%;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+#dueDates {
+    margin: 30px;
+    margin-bottom: 0px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    color:white;
+}
+
+
+#projectNames {
+    margin-left: 3px;
+    margin-right: 3px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#addProjects {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    height: 40px;
+    width: 150px;
+    background: black;
+    border-style: none;
+    border-radius: 9px;
+    color: white;
+}
+
+#addProjects:hover{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    height: 40px;
+    width: 150px;
+    background: gray;
+    border-style: none;
+    border-radius: 9px;
+    color: white;
+}
+
+#projectList {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: start;
+    align-items: stretch;
+    overflow: hidden;
+    overflow-y: scroll;
+    height: 400px;
+}
+
+#lists {
+    display: flex;
+    flex-shrink: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    height: 40px;
+    width: 150px;
+    background: black;
+    border-style: none;
+    border-radius: 9px;
+    color: white;
+}
+
+#lists:hover{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    height: 40px;
+    width: 150px;
+    background: gray;
+    border-style: none;
+    border-radius: 9px;
+    color: white;
+}
+
+
+html::-webkit-scrollbar {
+    width: 1vw;
+}
+html::-webkit-scrollbar-thumb {
+    background: black;
+}
+html::-webkit-scrollbar-track {
+    background: black;
+}
+html::-webkit-scrollbar-thumb:hover {
+    background: gray;
+}
+
+#projectList::-webkit-scrollbar {
+    width: 1vw;
+}
+#projectList::-webkit-scrollbar-track {
+    background: black;
+    border-radius: 9px;
+}
+#projectList::-webkit-scrollbar-track:hover {
+    background: rgb(53, 52, 52);
+    border-radius: 9px;
+}
+#projectList::-webkit-scrollbar-thumb {
+    background: rgb(53, 52, 52);
+    border-radius: 9px;
+}
+#projectList::-webkit-scrollbar-thumb:hover {
+    background: gray;
+    border-radius: 9px;
+}
+
+#Lname {
+    background:black;
+    border-color: rgb(46, 45, 45);
+    border-style: solid;
+    border-width: thin;
+    border-radius: 5px;
+    height: 25px;
+    margin-top: 5px;
+    color: gray;
+}
+
+#yesList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    background: blue;
+    border-style: none;
+    border-radius: 9px;
+    height: 30px;
+    width: 150px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: white;
+}
+
+#noList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    background: black;
+    border-style: solid;
+    border-color: rgb(46, 45, 45);
+    border-radius: 9px;
+    height: 30px;
+    width: 150px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: white;
+}
+
+
+#itemAdder{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+}
+
+#Iname {
+    background: black;
+    border-color: rgb(46, 45, 45);
+    border-style: solid;
+    border-width: thin;
+    border-radius: 5px;
+    height: 25px;
+    margin-top: 5px;
+    color: gray;
+}
+
+#Idescription {
+    background: black;
+    border-color: rgb(46, 45, 45);
+    border-style: solid;
+    border-width: thin;
+    border-radius: 5px;
+    height: 25px;
+    margin-top: 5px;
+    color: gray;
+}
+
+#submit {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    background: blue;
+    border-style: none;
+    border-radius: 9px;
+    height: 30px;
+    width: 150px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: white;
+}
+
+#cancel {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    background: black;
+    border-style: solid;
+    border-color: rgb(46, 45, 45);
+    border-radius: 9px;
+    height: 30px;
+    width: 150px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: white;
+}
+
+#toDoAddButton {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 150px;
+    background: black;
+    border-style: solid;
+    border-color: rgb(46, 45, 45);
+    border-radius: 9px;
+    color: white;
+    font-weight: bold;
+}
+
+#toDoAddButton:hover {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 150px;
+    background: gray;
+    border-style: none;
+    border-radius: 9px;
+    color: white;
+    font-weight: bold;
+}
+
+#title {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    font-weight: bold;
+}

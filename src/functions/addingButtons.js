@@ -16,20 +16,20 @@ export function appendToDoButton(Lname) {
     toDoModel.id = 'toDoButtonContainer';
     todoItems.appendChild(toDoModel);
     const ADD_TODO_BUTTON = document.createElement('button');
-    ADD_TODO_BUTTON.innerText = 'Add Item';
+    ADD_TODO_BUTTON.innerHTML = 'Add To Do';
     ADD_TODO_BUTTON.id ='toDoAddButton';
     toDoModel.appendChild(ADD_TODO_BUTTON);
     ADD_TODO_BUTTON.addEventListener('click', () => {
         toDoModel.innerHTML =
         `<form id="itemAdder">
-            <label for="Iname">Item Name:</label><br>
-            <input type="text" id="Iname" name="Iname"><br>
-            <label for="Idescription">Item Description:</label><br>
-            <input type="text" id="Idescription" name="Idescription><br>
-            <label for="Idate">Item Due Date:</label><br>
-            <input type="date" id="Idate" name="Idate"><br>
-            <button id="submit">Save</button><br>
-            <button id="cancel">Cancel</button><br>
+            <label for="Iname">Item Name:</label>
+            <input type="text" id="Iname" name="Iname">
+            <label for="Idescription">Item Description:</label>
+            <input type="text" id="Idescription" name="Idescription>
+            <label for="Idate">Item Due Date:</label>
+            <input type="date" id="Idate" name="Idate">
+            <button id="submit">Save</button>
+            <button id="cancel">Cancel</button>
         </form>`
         const submit = document.getElementById('submit');
         submit.addEventListener('click', () => { 
@@ -62,7 +62,8 @@ export function todayDefaultButton(){
         allItems.forEach(card => {
             if(card.theDueDate == currentDate){
                 const toDoCard = document.createElement('div');
-                toDoCard.id = 'itemCard';
+                toDoCard.id = card.theName;
+                toDoCard.className = 'itemCard';
                 toDoCard.innerHTML = `
                 <div id="cardName">Name: ${card.theName}</div><br>
                 <div id="cardDesc">Description: ${card.theDescription}</div><br>
@@ -76,9 +77,10 @@ export function todayDefaultButton(){
 
 
 // will give function to delete button to remove from DOM and local storage.
-export function deleteButton(objectSent, parsedLocalStorage, titleOfList){
+export function deleteButton(objectSent, parsedLocalStorage, idName){
+    const LIST_TITLE = document.getElementById('title').innerText;
     const ITEM_CONTAINER = document.getElementById('toDos');
-    const toDoCard = document.getElementById('itemCard');
+    const toDoCard = document.getElementById(idName);
     const deleteButton = document.createElement('button');
     deleteButton.setAttribute('id', 'delete-btn');
     deleteButton.innerText = "Delete";
@@ -87,7 +89,7 @@ export function deleteButton(objectSent, parsedLocalStorage, titleOfList){
             ITEM_CONTAINER.removeChild(toDoCard)
             const indexNumber = parsedLocalStorage.indexOf(objectSent);
             parsedLocalStorage.splice(indexNumber, 1);
-            localStorage.setItem(titleOfList, JSON.stringify(parsedLocalStorage));
+            localStorage.setItem(LIST_TITLE, JSON.stringify(parsedLocalStorage));
         }
     });
     toDoCard.appendChild(deleteButton);

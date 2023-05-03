@@ -18,7 +18,9 @@ CLICK_ADD_PROJECT.addEventListener('click', () => {
 });
 
 const todayButton = document.getElementById('today');
-todayButton.addEventListener('click', ()=>{ todayDefaultButton(); });
+todayButton.addEventListener('click', ()=>{ 
+    console.log('it worked')
+    todayDefaultButton(); });
 
 view();
 

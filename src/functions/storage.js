@@ -55,14 +55,15 @@ export function objectView(){
         ITEM_CONTAINER.innerText = "";
         storedItems.forEach(item => {
             const toDoCard = document.createElement('div');
-            toDoCard.id = 'itemCard';
+            toDoCard.className = 'itemCard';
+            toDoCard.id = item.theName;
             toDoCard.innerHTML = `
             <div id="${item.theName}">Name: ${item.theName}</div><br>
             <div id="cardDesc">Description: ${item.theDescription}</div><br>
             <div id="cardDate">Due Date: ${item.theDueDate}</div><br>
             `;
             ITEM_CONTAINER.appendChild(toDoCard);
-            deleteButton(item, storedItems, LIST_TITLE);
+            deleteButton(item, storedItems, item.theName);
         });
     }
 }

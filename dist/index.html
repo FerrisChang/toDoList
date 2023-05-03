@@ -6,22 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToDo List</title>
     <script src="../dist/main.js" defer></script>
+    <link rel="stylesheet" href="../src/style.css">
 </head>
 <body>
     <div id="content">
         <header id="header">
-            <h1>ToDo List</h1>
+            <h1 class="logo"><img src="../src/assets/list.svg" alt="list">ToDo List</h1>
+            <div id="social">
+                <img src="../src/assets/githublogo.svg" alt="github logo">
+                <img src="../src/assets/linkedin.svg" alt="linkedin logo">
+            </div>
         </header>
 
-        <body id="body">
+        <div id="innerbody">
             <div id="toDoLists">
                 <div id="dueDates">
-                    <button id="today">Today</button>
+                    <button id="today"><img src="../src/assets/today.svg" alt="today"> Today</button>
                 </div>
                 <div id="projectContainer">
                     <h2 id="projectTitle">PROJECTS</h2>
                     <div id="projectNames">
-                        <button id="addProjects">+ Add Project</button>
+                        <button id="addProjects"><img src="../src/assets/addingplus.svg" alt="adding button"> Add Project</button>
                     </div>
                     <div id="projectList"></div>
                 </div>
@@ -29,7 +34,7 @@
             <div id="toDoContainer">
                 <div id="toDos"></div>
             </div>
-        </body>
+        </div>
 
         <footer id="footer">
             <p id="copyrights">copyright © 2023 FerrisChang</p>
