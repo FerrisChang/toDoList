@@ -1,5 +1,5 @@
 import { forEach, indexOf } from "lodash";
-import { appendToDoButton, deleteButton } from "./addingButtons";
+import { appendToDoButton, deleteButton, listDeleteButton } from "./addingButtons";
 
 //saves the project list to local storage only.
 export function save() {
@@ -12,7 +12,7 @@ export function save() {
     localStorage.setItem('LISTS', JSON.stringify(old_data))
 } 
 
-//will convert the local storage array parsing it to display on the page.
+//will convert the local storage array parsing it to display the new list name on the list section of the page.
 export function view() {
     if(localStorage.getItem != null){
         const storedLists = JSON.parse(localStorage.getItem('LISTS'));
@@ -20,12 +20,15 @@ export function view() {
             const LIST_CONTAINER = document.getElementById('projectList');
             const ListButton = document.createElement('button');
             ListButton.innerText = item;
-            ListButton.id = 'lists'
+            ListButton.className = 'lists';
+            ListButton.id = item;
             LIST_CONTAINER.appendChild(ListButton);
             ListButton.addEventListener('click', () => {
                 appendToDoButton(item);
                 objectView();
             })
+            //added delete button here with functionality.
+            listDeleteButton(storedLists,item);
         })
     }
 }
@@ -58,9 +61,9 @@ export function objectView(){
             toDoCard.className = 'itemCard';
             toDoCard.id = item.theName;
             toDoCard.innerHTML = `
-            <div id="${item.theName}">Name: ${item.theName}</div><br>
-            <div id="cardDesc">Description: ${item.theDescription}</div><br>
-            <div id="cardDate">Due Date: ${item.theDueDate}</div><br>
+            <div id="cardName">${item.theName}</div>
+            <div id="cardDesc">${item.theDescription}</div>
+            <div id="cardDate">${item.theDueDate}</div>
             `;
             ITEM_CONTAINER.appendChild(toDoCard);
             deleteButton(item, storedItems, item.theName);

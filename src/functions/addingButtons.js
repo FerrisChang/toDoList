@@ -75,15 +75,15 @@ export function todayDefaultButton(){
     }
 }
 
-
+//deletion button will be added to cards
 // will give function to delete button to remove from DOM and local storage.
-export function deleteButton(objectSent, parsedLocalStorage, idName){
+export function deleteButton(objectSent, parsedLocalStorage, nameOfCard){
     const LIST_TITLE = document.getElementById('title').innerText;
     const ITEM_CONTAINER = document.getElementById('toDos');
-    const toDoCard = document.getElementById(idName);
+    const toDoCard = document.getElementById(nameOfCard);
     const deleteButton = document.createElement('button');
     deleteButton.setAttribute('id', 'delete-btn');
-    deleteButton.innerText = "Delete";
+    deleteButton.innerText = "X";
     deleteButton.addEventListener('click', (event) => {
         if(event.target.id === 'delete-btn'){
             ITEM_CONTAINER.removeChild(toDoCard)
@@ -94,3 +94,25 @@ export function deleteButton(objectSent, parsedLocalStorage, idName){
     });
     toDoCard.appendChild(deleteButton);
 }
+
+//delete button for the lists
+export function listDeleteButton(arrayOfLists,listName) {
+
+    const LIST_LOCATION = document.getElementById('projectList');
+    const SPECIFIC_LIST = document.getElementById(listName);
+    const deleteButton = document.createElement('button');
+    deleteButton.setAttribute('id', 'list-delete-btn');
+    deleteButton.innerHTML = 'X';
+    deleteButton.addEventListener('click', (event) => {
+        if(event.target.id === 'list-delete-btn'){
+            LIST_LOCATION.removeChild(SPECIFIC_LIST)
+            const indexNumber = arrayOfLists.indexOf(listName);
+            arrayOfLists.splice(indexNumber, 1);
+            localStorage.setItem('LISTS' , JSON.stringify(arrayOfLists));
+            localStorage.removeItem(listName)
+            window.location.reload();
+        }
+    
+    });
+    SPECIFIC_LIST.appendChild(deleteButton);
+} 
